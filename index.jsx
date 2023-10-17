@@ -35,7 +35,7 @@ import { requireAuth } from "./utils";
 
 import "./server";
 
-const TRACKING_ID = "UA-XXXXX-X"; // OUR_TRACKING_ID
+const TRACKING_ID = "UA-289543381-1"
 ReactGA.initialize(TRACKING_ID);
 
 const router = createBrowserRouter(
