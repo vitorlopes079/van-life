@@ -1,7 +1,3 @@
-const TRACKING_ID = "UA-289543381-1";
-ReactGA.initialize(TRACKING_ID);
-ReactGA.debug();
-
 import React, { useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import ReactGA from "react-ga";
@@ -12,6 +8,7 @@ import {
   createRoutesFromElements,
   Route,
   Link,
+  useHistory,
 } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -39,7 +36,9 @@ import { requireAuth } from "./utils";
 
 import "./server";
 
-
+const TRACKING_ID = "UA-289543381-1";
+ReactGA.initialize(TRACKING_ID);
+ReactGA.debug();
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -112,9 +111,17 @@ const router = createBrowserRouter(
 );
 
 function App() {
+  const history = useHistory(); // <-- Use this hook
   useEffect(() => {
+    // Initial pageview
     ReactGA.pageview(window.location.pathname + window.location.search);
-  }, []);
+
+    // Listen for route changes
+    return history.listen((location) => {
+      ReactGA.pageview(location.pathname + location.search);
+    });
+  }, [history]);
+
   return <RouterProvider router={router} />;
 }
 
