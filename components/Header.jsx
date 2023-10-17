@@ -9,6 +9,7 @@ export default function Header() {
       label = "Default Label"
     ) => {
       ReactGA.event({ category, action, label });
+      console.log(`Tracking Event: Category - ${category}, Action - ${action}, Label - ${label}`);
     };
     return eventTracker;
   };

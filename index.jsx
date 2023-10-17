@@ -1,4 +1,8 @@
-import React, {useEffect} from "react";
+const TRACKING_ID = "UA-289543381-1";
+ReactGA.initialize(TRACKING_ID);
+ReactGA.debug();
+
+import React, { useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import ReactGA from "react-ga";
 
@@ -35,8 +39,7 @@ import { requireAuth } from "./utils";
 
 import "./server";
 
-const TRACKING_ID = "UA-289543381-1"
-ReactGA.initialize(TRACKING_ID);
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
